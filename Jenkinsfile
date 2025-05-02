@@ -1,28 +1,29 @@
 pipeline {
-    agent { label 'agent-1'}
-     
+    agent any
     tools {
-        maven 'maven3.9'
-        jdk 'jdk17'
-    }
-
-    stages {
+    jdk 'jdk17'
+    maven '3.9.9'
         
+    }
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/mehdidevops2030/boargamerepo.git'
+            }
+        }
         stage('Compile') {
             steps {
-             sh 'mvn compile'
+                sh 'mvn compile'
             }
         }
-        
         stage('Test') {
             steps {
-              sh 'mvn test' 
+                sh 'mvn test'
             }
         }
-        
-        stage('Build') {
+        stage('Package') {
             steps {
-              sh "mvn package"
+                sh 'mvn package'
             }
         }
     }
