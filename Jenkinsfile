@@ -3,7 +3,6 @@ pipeline {
     tools {
     jdk 'jdk17'
     maven '3.9.9' 
-        
     }
     stages {
         stage('Checkout Code') {
